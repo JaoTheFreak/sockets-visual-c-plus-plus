@@ -1,6 +1,4 @@
-﻿  Controller.cpp
-  MainForm.cpp
-  Generating Code...
-  .NETFramework,Version=v4.6.1.AssemblyAttributes.cpp
+﻿  MainForm.cpp
+c:\repositories\sockets-visual-c-plus-plus\chatcomsocket\chat\util.h(14): warning C4091: 'static ': ignored on left of 'Util' when no variable is declared
   Controller.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   Chat.vcxproj -> C:\repositories\sockets-visual-c-plus-plus\ChatComSocket\Debug\Chat.exe

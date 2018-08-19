@@ -136,6 +136,7 @@
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="MainForm.cpp" />
     <ClCompile Include="UserMessage.cpp" />
+    <ClCompile Include="Util.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Controller.h" />
@@ -143,6 +144,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="UserMessage.h" />
+    <ClInclude Include="Util.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainForm.resx">
