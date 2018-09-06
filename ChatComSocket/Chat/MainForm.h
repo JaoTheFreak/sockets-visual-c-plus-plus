@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "Controller.h"
 #include "Util.h"
@@ -36,6 +36,10 @@ namespace Chat {
 
 	private: System::Windows::Forms::Label^  lblPorta;
 	private: System::Windows::Forms::TextBox^  txtPort;
+	private: System::Windows::Forms::Label^  lblStatusHeart;
+	private: System::Windows::Forms::Button^  btnConnect;
+
+
 
 
 	public:
@@ -83,6 +87,8 @@ namespace Chat {
 			this->lblMessage = (gcnew System::Windows::Forms::Label());
 			this->lblMensagens = (gcnew System::Windows::Forms::Label());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->lblStatusHeart = (gcnew System::Windows::Forms::Label());
+			this->btnConnect = (gcnew System::Windows::Forms::Button());
 			this->lblPorta = (gcnew System::Windows::Forms::Label());
 			this->txtPort = (gcnew System::Windows::Forms::TextBox());
 			this->lblEndeIP = (gcnew System::Windows::Forms::Label());
@@ -100,6 +106,7 @@ namespace Chat {
 			// 
 			// btnSend
 			// 
+			this->btnSend->Enabled = false;
 			this->btnSend->Location = System::Drawing::Point(12, 347);
 			this->btnSend->Name = L"btnSend";
 			this->btnSend->Size = System::Drawing::Size(343, 38);
@@ -115,6 +122,7 @@ namespace Chat {
 			this->txtMessage->Size = System::Drawing::Size(343, 20);
 			this->txtMessage->TabIndex = 2;
 			this->txtMessage->TextChanged += gcnew System::EventHandler(this, &MainForm::textBox1_TextChanged);
+			this->txtMessage->Enter += gcnew System::EventHandler(this, &MainForm::txtMessage_Enter);
 			// 
 			// lblMessage
 			// 
@@ -136,16 +144,41 @@ namespace Chat {
 			// 
 			// groupBox1
 			// 
+			this->groupBox1->Controls->Add(this->lblStatusHeart);
+			this->groupBox1->Controls->Add(this->btnConnect);
 			this->groupBox1->Controls->Add(this->lblPorta);
 			this->groupBox1->Controls->Add(this->txtPort);
 			this->groupBox1->Controls->Add(this->lblEndeIP);
 			this->groupBox1->Controls->Add(this->txtIP);
 			this->groupBox1->Location = System::Drawing::Point(361, 34);
 			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Size = System::Drawing::Size(148, 136);
+			this->groupBox1->Size = System::Drawing::Size(148, 164);
 			this->groupBox1->TabIndex = 5;
 			this->groupBox1->TabStop = false;
-			this->groupBox1->Text = L"Endere�o Servidor";
+			this->groupBox1->Text = L"Endereço Servidor";
+			// 
+			// lblStatusHeart
+			// 
+			this->lblStatusHeart->AutoSize = true;
+			this->lblStatusHeart->BackColor = System::Drawing::Color::Transparent;
+			this->lblStatusHeart->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 22, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->lblStatusHeart->ForeColor = System::Drawing::Color::Red;
+			this->lblStatusHeart->Location = System::Drawing::Point(110, 7);
+			this->lblStatusHeart->Name = L"lblStatusHeart";
+			this->lblStatusHeart->Size = System::Drawing::Size(32, 36);
+			this->lblStatusHeart->TabIndex = 6;
+			this->lblStatusHeart->Text = L"♥";
+			// 
+			// btnConnect
+			// 
+			this->btnConnect->Location = System::Drawing::Point(7, 128);
+			this->btnConnect->Name = L"btnConnect";
+			this->btnConnect->Size = System::Drawing::Size(135, 23);
+			this->btnConnect->TabIndex = 8;
+			this->btnConnect->Text = L"Conectar";
+			this->btnConnect->UseVisualStyleBackColor = true;
+			this->btnConnect->Click += gcnew System::EventHandler(this, &MainForm::btnConnect_Click);
 			// 
 			// lblPorta
 			// 
@@ -170,7 +203,7 @@ namespace Chat {
 			this->lblEndeIP->Name = L"lblEndeIP";
 			this->lblEndeIP->Size = System::Drawing::Size(66, 13);
 			this->lblEndeIP->TabIndex = 5;
-			this->lblEndeIP->Text = L"Endere�o IP";
+			this->lblEndeIP->Text = L"Endereço IP";
 			this->lblEndeIP->Click += gcnew System::EventHandler(this, &MainForm::label1_Click);
 			// 
 			// txtIP
@@ -222,21 +255,65 @@ namespace Chat {
 
 		std::string messageToSendStd = Util::ToStdString(messageToSend);
 
-		myController->SendMessage(messageToSendStd, "");
+		myController->SendMessage(messageToSendStd, "João Antonio");
 	}
 
 	private: bool ValidateFieldsBeforeSend() {
-
-		String^ messageToSend = this->txtMessage->Text;
 		String^ captionError = "Erro de ";
-
-		if (String::IsNullOrEmpty(messageToSend)) {
-			System::Windows::Forms::MessageBox::Show("A messagem n�o pode estar vazia.", captionError + "Mensagem Vazia");
+		/*
+		if (!this->btnSend->Enabled) {
+			System::Windows::Forms::MessageBox::Show("Antes do envio da mensagem é necessário se conectar ao Socket.", captionError + "Conexão não estabelecida");
 			return false;
-		}
+		}*/
+
+		String^ messageToSend = this->txtMessage->Text;		
+
+		if (String::IsNullOrEmpty(messageToSend) && this->myController->StillConnected()) {
+			System::Windows::Forms::MessageBox::Show("A messagem não pode estar vazia.", captionError + "Mensagem vazia");
+			return false;
+		}	
 
 		return true;
 	}
 
-	};
+	private: System::Void btnConnect_Click(System::Object^  sender, System::EventArgs^  e) {
+		
+		if (!this->myController->StillConnected()) {
+			String^ captionError = "Erro de ";
+
+			if (String::IsNullOrEmpty(this->txtIP->Text)) {
+				Windows::Forms::MessageBox::Show("O endereço de IP não pode estar vazio.", captionError + " endereço de IP vazio");
+				return;
+			}
+
+			if (String::IsNullOrEmpty(this->txtPort->Text)) {
+				Windows::Forms::MessageBox::Show("A porta não pode estar vazio.", captionError + " porta vazio");
+				return;
+			}
+
+			std::string ipAddressToConnect = Util::ToStdString(this->txtIP->Text);
+
+			std::string portToConnect = Util::ToStdString(this->txtPort->Text);
+
+			if (this->myController->ConnectToSocket(ipAddressToConnect, portToConnect)) {
+				this->lblStatusHeart->ForeColor = Color::Green;
+				this->btnSend->Enabled = true;
+				this->btnConnect->Text = "Desconectar";
+			}
+		}
+		else
+		{
+			if (this->myController->Disconnect()) {
+				this->lblStatusHeart->ForeColor = Color::Red;
+				this->btnSend->Enabled = false;
+				this->btnConnect->Text = "Connectar";
+			}			
+		}		
+
+	}
+
+	private: System::Void txtMessage_Enter(System::Object^  sender, System::EventArgs^  e) {
+		//this->ValidateFieldsBeforeSend();
+	}
+};
 }

@@ -1,4 +1,3 @@
 ﻿  MainForm.cpp
-c:\repositories\sockets-visual-c-plus-plus\chatcomsocket\chat\util.h(14): warning C4091: 'static ': ignored on left of 'Util' when no variable is declared
-  Controller.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
-  Chat.vcxproj -> C:\repositories\sockets-visual-c-plus-plus\ChatComSocket\Debug\Chat.exe
+c:\users\lab 20\desktop\trabalho calvo - chat com sockets\sockets-visual-c-plus-plus\chatcomsocket\chat\Util.h(14): warning C4091: 'static ': ignorado à esquerda de 'Util' quando nenhuma variável é declarada
+  Chat.vcxproj -> C:\Users\lab 20\Desktop\Trabalho Calvo - Chat com Sockets\sockets-visual-c-plus-plus\ChatComSocket\Debug\Chat.exe

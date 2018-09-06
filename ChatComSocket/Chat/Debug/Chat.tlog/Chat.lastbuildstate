@@ -1,2 +1,2 @@
-#TargetFrameworkVersion=v4.6.1:PlatformToolSet=v141:EnableManagedIncrementalBuild=true:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=10.0.17134.0
-Debug|Win32|C:\repositories\sockets-visual-c-plus-plus\ChatComSocket\|
+#TargetFrameworkVersion=v4.6.1:PlatformToolSet=v141:EnableManagedIncrementalBuild=true:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=10.0.15063.0
+Debug|Win32|C:\Users\lab 20\Desktop\Trabalho Calvo - Chat com Sockets\sockets-visual-c-plus-plus\ChatComSocket\|
