@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-static class Util
+class Util
 {
 public:
 	Util();
