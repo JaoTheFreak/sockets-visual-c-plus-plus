@@ -1,9 +1,5 @@
-﻿  Controller.cpp
-  MainForm.cpp
-  Transmissor.cpp
-  UserMessage.cpp
-  Util.cpp
+﻿  RegisterForm.cpp
+  StartForm.cpp
   Generating Code...
-  .NETFramework,Version=v4.6.1.AssemblyAttributes.cpp
   Controller.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   Chat.vcxproj -> E:\Trabalho Calvo\sockets-visual-c-plus-plus\ChatComSocket\Debug\Chat.exe

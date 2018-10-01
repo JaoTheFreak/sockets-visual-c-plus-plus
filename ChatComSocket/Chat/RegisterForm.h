@@ -34,6 +34,18 @@ namespace Chat {
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::GroupBox^  groupBox1;
+	private: System::Windows::Forms::Label^  label3;
+	private: System::Windows::Forms::Label^  label2;
+	private: System::Windows::Forms::Label^  label1;
+	private: System::Windows::Forms::TextBox^  textBox3;
+	private: System::Windows::Forms::TextBox^  textBox2;
+	private: System::Windows::Forms::TextBox^  textBox1;
+	private: System::Windows::Forms::TextBox^  textBox4;
+	private: System::Windows::Forms::Label^  label4;
+	private: System::Windows::Forms::Button^  btnCancel;
+	private: System::Windows::Forms::Button^  btnNew;
+	protected:
 
 	private:
 		/// <summary>
@@ -48,12 +60,172 @@ namespace Chat {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = gcnew System::ComponentModel::Container();
-			this->Size = System::Drawing::Size(300,300);
-			this->Text = L"RegisterForm";
-			this->Padding = System::Windows::Forms::Padding(0);
+			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->btnCancel = (gcnew System::Windows::Forms::Button());
+			this->btnNew = (gcnew System::Windows::Forms::Button());
+			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->groupBox1->SuspendLayout();
+			this->SuspendLayout();
+			// 
+			// groupBox1
+			// 
+			this->groupBox1->Controls->Add(this->textBox4);
+			this->groupBox1->Controls->Add(this->label4);
+			this->groupBox1->Controls->Add(this->btnCancel);
+			this->groupBox1->Controls->Add(this->btnNew);
+			this->groupBox1->Controls->Add(this->textBox3);
+			this->groupBox1->Controls->Add(this->textBox2);
+			this->groupBox1->Controls->Add(this->textBox1);
+			this->groupBox1->Controls->Add(this->label3);
+			this->groupBox1->Controls->Add(this->label2);
+			this->groupBox1->Controls->Add(this->label1);
+			this->groupBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->groupBox1->Location = System::Drawing::Point(12, 12);
+			this->groupBox1->Name = L"groupBox1";
+			this->groupBox1->Size = System::Drawing::Size(304, 252);
+			this->groupBox1->TabIndex = 0;
+			this->groupBox1->TabStop = false;
+			this->groupBox1->Text = L"Dados para o Registro";
+			// 
+			// textBox4
+			// 
+			this->textBox4->Location = System::Drawing::Point(127, 153);
+			this->textBox4->Name = L"textBox4";
+			this->textBox4->PasswordChar = '*';
+			this->textBox4->Size = System::Drawing::Size(107, 26);
+			this->textBox4->TabIndex = 3;
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label4->Location = System::Drawing::Point(123, 130);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(129, 20);
+			this->label4->TabIndex = 84;
+			this->label4->Text = L"Confirmar Senha";
+			// 
+			// btnCancel
+			// 
+			this->btnCancel->Location = System::Drawing::Point(154, 220);
+			this->btnCancel->Name = L"btnCancel";
+			this->btnCancel->Size = System::Drawing::Size(138, 26);
+			this->btnCancel->TabIndex = 5;
+			this->btnCancel->Text = L"Voltar";
+			this->btnCancel->UseVisualStyleBackColor = true;
+			this->btnCancel->Click += gcnew System::EventHandler(this, &RegisterForm::btnCancel_Click);
+			// 
+			// btnNew
+			// 
+			this->btnNew->BackColor = System::Drawing::Color::Green;
+			this->btnNew->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
+			this->btnNew->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->btnNew->Location = System::Drawing::Point(10, 220);
+			this->btnNew->Name = L"btnNew";
+			this->btnNew->Size = System::Drawing::Size(138, 26);
+			this->btnNew->TabIndex = 4;
+			this->btnNew->Text = L"Criar";
+			this->btnNew->UseVisualStyleBackColor = false;
+			this->btnNew->Click += gcnew System::EventHandler(this, &RegisterForm::btnNew_Click);
+			// 
+			// textBox3
+			// 
+			this->textBox3->Location = System::Drawing::Point(10, 103);
+			this->textBox3->Name = L"textBox3";
+			this->textBox3->Size = System::Drawing::Size(138, 26);
+			this->textBox3->TabIndex = 1;
+			// 
+			// textBox2
+			// 
+			this->textBox2->Location = System::Drawing::Point(10, 51);
+			this->textBox2->Name = L"textBox2";
+			this->textBox2->Size = System::Drawing::Size(282, 26);
+			this->textBox2->TabIndex = 0;
+			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(10, 153);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->PasswordChar = '*';
+			this->textBox1->Size = System::Drawing::Size(107, 26);
+			this->textBox1->TabIndex = 2;
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label3->Location = System::Drawing::Point(6, 130);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(56, 20);
+			this->label3->TabIndex = 23;
+			this->label3->Text = L"Senha";
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label2->Location = System::Drawing::Point(6, 80);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(48, 20);
+			this->label2->TabIndex = 12;
+			this->label2->Text = L"Login";
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label1->Location = System::Drawing::Point(6, 28);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(51, 20);
+			this->label1->TabIndex = 11;
+			this->label1->Text = L"Nome";
+			this->label1->Click += gcnew System::EventHandler(this, &RegisterForm::label1_Click);
+			// 
+			// RegisterForm
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->ClientSize = System::Drawing::Size(323, 275);
+			this->Controls->Add(this->groupBox1);
+			this->Name = L"RegisterForm";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
+			this->Text = L"RegisterForm";
+			this->groupBox1->ResumeLayout(false);
+			this->groupBox1->PerformLayout();
+			this->ResumeLayout(false);
+
 		}
 #pragma endregion
-	};
+	private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void btnCancel_Click(System::Object^  sender, System::EventArgs^  e) {
+		
+		if(
+			MessageBox::Show("Deseja voltar sem criar seu login?", "Registro Não Será Salvo",
+				MessageBoxButtons::YesNo, MessageBoxIcon::Question) == Windows::Forms::DialogResult::Yes
+		)
+		{
+			this->Close();
+		}
+		
+		
+
+	}
+	private: System::Void btnNew_Click(System::Object^  sender, System::EventArgs^  e) {
+
+	
+	}
+};
 }

@@ -2,6 +2,7 @@
 
 #include "Controller.h"
 #include "Util.h"
+#include "DataAccess.h"
 
 namespace Chat {
 
@@ -26,7 +27,9 @@ namespace Chat {
 			//
 
 			myController = new Controller();
+			dbContext = new DataAccess("root", "", "chatsocket", "127.0.0.1", 3306);			
 		}
+
 	private: System::Windows::Forms::Label^  lblMessage;
 	private: System::Windows::Forms::Label^  lblMensagens;
 	private: System::Windows::Forms::GroupBox^  groupBox1;
@@ -39,14 +42,10 @@ namespace Chat {
 	private: System::Windows::Forms::Label^  lblStatusHeart;
 	private: System::Windows::Forms::Button^  btnConnect;
 
-
-
-
-	public:
-
+			 
 	private:
 		Controller * myController;
-
+		DataAccess * dbContext;
 
 	protected:
 		/// <summary>
