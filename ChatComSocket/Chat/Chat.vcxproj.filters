@@ -79,6 +79,12 @@
     <EmbeddedResource Include="RegisterForm.resx">
       <Filter>Arquivos de Recurso</Filter>
     </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <Filter>Arquivos de Recurso</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StartForm.resx">
+      <Filter>Arquivos de Recurso</Filter>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
