@@ -26,8 +26,7 @@ namespace Chat {
 			//TODO: Add the constructor code here
 			//
 
-			myController = new Controller();
-			dbContext = new DataAccess("root", "", "chatsocket", "127.0.0.1", 3306);			
+			myController = new Controller();		
 		}
 
 	private: System::Windows::Forms::Label^  lblMessage;
@@ -45,7 +44,6 @@ namespace Chat {
 			 
 	private:
 		Controller * myController;
-		DataAccess * dbContext;
 
 	protected:
 		/// <summary>

@@ -17,10 +17,16 @@ public class DataAccess
 		unsigned int _port;
 		MYSQL * connect;
 
-	public:
+	private:
 		DataAccess(std::string userName, std::string userPassword, std::string databaseName, 
 			std::string serverIp, unsigned int serverPort);
 
+	public:
+		DataAccess();
 		~DataAccess();
+
+		bool CreateNewUser(std::string newUserName, std::string newUserPassword, std::string newUserLogin);
+
+		static DataAccess * GetInstance();
 };
 

@@ -1,0 +1,33 @@
+/* Autor: João Antonio Martins Filho */
+
+CREATE DATABASE Chat;
+
+USE Chat;
+
+CREATE TABLE User (
+	ID INT PRIMARY KEY AUTO_INCREMENT,
+    UserName NVARCHAR(255) NOT NULL,
+    UserLogin NVARCHAR(255) NOT NULL,
+    UserPassword NVARCHAR(255) NOT NULL
+);
+
+CREATE TABLE TypeWay (
+	ID INT PRIMARY KEY AUTO_INCREMENT,
+    Description NVARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Message (
+	ID INT PRIMARY KEY AUTO_INCREMENT,
+    UserID INT NOT NULL,
+    TypeWayID INT NOT NULL,
+    DateMessage DATETIME NOT NULL,
+    UserNameOrigin NVARCHAR(255) NOT NULL,
+    UserNameDestiny NVARCHAR(255) NOT NULL,
+    Description NVARCHAR(255),
+    
+    CONSTRAINT UserID_FK FOREIGN KEY (UserID) REFERENCES User (Id),
+    CONSTRAINT TypeWayId FOREIGN KEY (TypeWayID) REFERENCES TypeWay (Id)
+);
+
+
+##DROP TABLE Message;

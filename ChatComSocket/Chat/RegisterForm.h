@@ -1,5 +1,8 @@
 #pragma once
 
+#include "DataAccess.h"
+#include "Util.h"
+
 namespace Chat {
 
 	using namespace System;
@@ -38,10 +41,14 @@ namespace Chat {
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::Label^  label1;
-	private: System::Windows::Forms::TextBox^  textBox3;
-	private: System::Windows::Forms::TextBox^  textBox2;
-	private: System::Windows::Forms::TextBox^  textBox1;
-	private: System::Windows::Forms::TextBox^  textBox4;
+	private: System::Windows::Forms::TextBox^  txtLogin;
+
+	private: System::Windows::Forms::TextBox^  txtNome;
+	private: System::Windows::Forms::TextBox^  txtPass;
+	private: System::Windows::Forms::TextBox^  txtPassConf;
+
+
+
 	private: System::Windows::Forms::Label^  label4;
 	private: System::Windows::Forms::Button^  btnCancel;
 	private: System::Windows::Forms::Button^  btnNew;
@@ -61,13 +68,13 @@ namespace Chat {
 		void InitializeComponent(void)
 		{
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
-			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
+			this->txtPassConf = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->btnCancel = (gcnew System::Windows::Forms::Button());
 			this->btnNew = (gcnew System::Windows::Forms::Button());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->txtLogin = (gcnew System::Windows::Forms::TextBox());
+			this->txtNome = (gcnew System::Windows::Forms::TextBox());
+			this->txtPass = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
@@ -76,13 +83,13 @@ namespace Chat {
 			// 
 			// groupBox1
 			// 
-			this->groupBox1->Controls->Add(this->textBox4);
+			this->groupBox1->Controls->Add(this->txtPassConf);
 			this->groupBox1->Controls->Add(this->label4);
 			this->groupBox1->Controls->Add(this->btnCancel);
 			this->groupBox1->Controls->Add(this->btnNew);
-			this->groupBox1->Controls->Add(this->textBox3);
-			this->groupBox1->Controls->Add(this->textBox2);
-			this->groupBox1->Controls->Add(this->textBox1);
+			this->groupBox1->Controls->Add(this->txtLogin);
+			this->groupBox1->Controls->Add(this->txtNome);
+			this->groupBox1->Controls->Add(this->txtPass);
 			this->groupBox1->Controls->Add(this->label3);
 			this->groupBox1->Controls->Add(this->label2);
 			this->groupBox1->Controls->Add(this->label1);
@@ -95,13 +102,13 @@ namespace Chat {
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Dados para o Registro";
 			// 
-			// textBox4
+			// txtPassConf
 			// 
-			this->textBox4->Location = System::Drawing::Point(127, 153);
-			this->textBox4->Name = L"textBox4";
-			this->textBox4->PasswordChar = '*';
-			this->textBox4->Size = System::Drawing::Size(107, 26);
-			this->textBox4->TabIndex = 3;
+			this->txtPassConf->Location = System::Drawing::Point(127, 153);
+			this->txtPassConf->Name = L"txtPassConf";
+			this->txtPassConf->PasswordChar = '*';
+			this->txtPassConf->Size = System::Drawing::Size(107, 26);
+			this->txtPassConf->TabIndex = 3;
 			// 
 			// label4
 			// 
@@ -137,27 +144,27 @@ namespace Chat {
 			this->btnNew->UseVisualStyleBackColor = false;
 			this->btnNew->Click += gcnew System::EventHandler(this, &RegisterForm::btnNew_Click);
 			// 
-			// textBox3
+			// txtLogin
 			// 
-			this->textBox3->Location = System::Drawing::Point(10, 103);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(138, 26);
-			this->textBox3->TabIndex = 1;
+			this->txtLogin->Location = System::Drawing::Point(10, 103);
+			this->txtLogin->Name = L"txtLogin";
+			this->txtLogin->Size = System::Drawing::Size(138, 26);
+			this->txtLogin->TabIndex = 1;
 			// 
-			// textBox2
+			// txtNome
 			// 
-			this->textBox2->Location = System::Drawing::Point(10, 51);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(282, 26);
-			this->textBox2->TabIndex = 0;
+			this->txtNome->Location = System::Drawing::Point(10, 51);
+			this->txtNome->Name = L"txtNome";
+			this->txtNome->Size = System::Drawing::Size(282, 26);
+			this->txtNome->TabIndex = 0;
 			// 
-			// textBox1
+			// txtPass
 			// 
-			this->textBox1->Location = System::Drawing::Point(10, 153);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->PasswordChar = '*';
-			this->textBox1->Size = System::Drawing::Size(107, 26);
-			this->textBox1->TabIndex = 2;
+			this->txtPass->Location = System::Drawing::Point(10, 153);
+			this->txtPass->Name = L"txtPass";
+			this->txtPass->PasswordChar = '*';
+			this->txtPass->Size = System::Drawing::Size(107, 26);
+			this->txtPass->TabIndex = 2;
 			// 
 			// label3
 			// 
@@ -224,8 +231,30 @@ namespace Chat {
 
 	}
 	private: System::Void btnNew_Click(System::Object^  sender, System::EventArgs^  e) {
+		
+		if ( !this->CheckPasswordMatch(this->txtPass->Text, this->txtPassConf->Text) ) {
+			MessageBox::Show("As senhas não são iguais", "Problema ao Cadastrar", 
+				MessageBoxButtons::OK, MessageBoxIcon::Error);
 
+			return;
+		}
+
+		std::string newUserLogin = Util::ToStdString(this->txtLogin->Text);
+
+		std::string newUserName = Util::ToStdString(this->txtNome->Text);
+				
+		std::string newUserPassword = (char *) Util::HashThis(Util::ToStdString(this->txtPass->Text).c_str());
+
+		DataAccess * db = DataAccess::GetInstance();
+
+		db->CreateNewUser(newUserName, newUserPassword, newUserLogin);
+
+		db->~DataAccess();
 	
+	}
+
+	private: bool CheckPasswordMatch(System::String ^ passOne, System::String ^ passTwo) {
+		return passOne->Equals(passTwo);
 	}
 };
 }
