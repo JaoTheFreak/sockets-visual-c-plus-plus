@@ -1,8 +1,3 @@
-﻿  Controller.cpp
-  DataAccess.cpp
-  MainForm.cpp
-  RegisterForm.cpp
-  StartForm.cpp
-  Util.cpp
-  Gerando Código...
-  Chat.vcxproj -> C:\Users\lab 20\Desktop\Chat Joao\sockets-visual-c-plus-plus\ChatComSocket\Debug\Chat.exe
+﻿  DataAccess.cpp
+  Controller.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  Chat.vcxproj -> E:\Trabalho Calvo\sockets-visual-c-plus-plus\ChatComSocket\Debug\Chat.exe

@@ -25,14 +25,20 @@ System::String ^ Util::ToManagedString(std::string toConvert)
 	return toReturn;
 }
 
-unsigned Util::HashThis(const char * s)
+char * Util::HashThis(const char * s)
 {
 	const int FIRSTH = 37, A = 54059, B = 76963, C = 86969;
 
 	unsigned h = FIRSTH;
+
 	while (*s) {
 		h = (h * A) ^ (s[0] * B);
 		s++;
 	}
-	return h;
+
+	std::string str = std::to_string(h);
+
+	char * c = (char *) str.c_str();
+
+	return c;
 }

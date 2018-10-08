@@ -12,6 +12,6 @@ public:
 
 	static System::String^ ToManagedString(std::string toConvert);
 
-	static unsigned HashThis(const char* s);
+	static char * HashThis(const char* s);
 };
 

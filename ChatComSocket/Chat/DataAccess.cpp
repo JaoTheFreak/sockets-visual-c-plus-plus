@@ -43,9 +43,10 @@ bool DataAccess::CreateNewUser(std::string newUserName, std::string newUserPassw
 			return false;
 		}		
 
-		std::string query = "INSERT INTO user VALUES ('" + newUserName + "', '" + newUserLogin + "', '" + newUserPassword + "')";
+		
+		std::string query = "INSERT INTO user VALUES ( NULL, \"" + newUserName + "\", \"" + newUserLogin + "\", \"" + newUserPassword + "\")";
 
-		bool created = mysql_query(this->connect, query.c_str());  
+		bool created = mysql_query(this->connect, query.c_str()) == 0;  
 		
 		if (created)
 			return true;
@@ -60,7 +61,7 @@ bool DataAccess::CreateNewUser(std::string newUserName, std::string newUserPassw
 
 DataAccess * DataAccess::GetInstance()
 {
-	DataAccess * newDbObj = new DataAccess("root", "", "chat", "127.0.0.1", 3306);
+	DataAccess * newDbObj = new DataAccess("root", "", "chatsocket", "127.0.0.1", 3306);
 		
 	return newDbObj;
 }

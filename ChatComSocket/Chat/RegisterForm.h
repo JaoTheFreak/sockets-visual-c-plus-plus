@@ -243,7 +243,7 @@ namespace Chat {
 
 		std::string newUserName = Util::ToStdString(this->txtNome->Text);
 				
-		std::string newUserPassword = (char *) Util::HashThis(Util::ToStdString(this->txtPass->Text).c_str());
+		std::string newUserPassword = Util::HashThis(Util::ToStdString(this->txtPass->Text).c_str());
 
 		DataAccess * db = DataAccess::GetInstance();
 
